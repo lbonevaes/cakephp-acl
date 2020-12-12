@@ -1,5 +1,5 @@
 <?php
-namespace App\Model\Table;
+namespace Access\Model\Table;
 
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;

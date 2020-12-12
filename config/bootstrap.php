@@ -218,3 +218,5 @@ Plugin::load('TwitterBootstrap');
 if (Configure::read('debug')) {
     Plugin::load('DebugKit', ['bootstrap' => true]);
 }
+
+Plugin::load('Access', ['bootstrap' => false, 'routes' => true]);

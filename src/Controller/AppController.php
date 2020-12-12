@@ -45,7 +45,7 @@ class AppController extends Controller {
         $this->loadComponent('Flash');
         $this->loadComponent('Auth', [
            'loginAction'=>[
-               'plugin'=>false,
+               'plugin'=>'access',
                'controller'=>'users',
                'action'=>'login'
            ] 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace Access\Controller;
 
-use App\Controller\AppController;
+use Access\Controller\AppController;
 
 /**
  * Users Controller
