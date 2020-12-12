@@ -43,6 +43,13 @@ class AppController extends Controller {
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+        $this->loadComponent('Auth', [
+           'loginAction'=>[
+               'plugin'=>false,
+               'controller'=>'users',
+               'action'=>'login'
+           ] 
+        ]);
 
         /*
          * Enable the following components for recommended CakePHP security settings.
@@ -54,6 +61,7 @@ class AppController extends Controller {
 
     public function beforeFilter(Event $event) {
         $this->viewBuilder()->layout('TwitterBootstrap.adminlte');
+        //$this->Auth->allow();
     }
 
     /**

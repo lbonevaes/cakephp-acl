@@ -35,7 +35,7 @@
   <ul class="sidebar-menu">
     <li class="header">HEADER</li>
     <!-- Optionally, you can add icons to the links -->
-    <li class="active"><a href="/articles"><i class="fa fa-link"></i> <span>Artigos</span></a></li>
+    <li class="active"><a href="/cakephp-acl/articles"><i class="fa fa-link"></i> <span>Artigos</span></a></li>
     <li><a href="/cakephp-acl/comments"><i class="fa fa-link"></i> <span>Comentários</span></a></li>
     <li><a href="/cakephp-acl/messages"><i class="fa fa-link"></i> <span>Mensagens</span></a></li>
     <li><a href="/cakephp-acl/pages"><i class="fa fa-link"></i> <span>Páginas</span></a></li>
