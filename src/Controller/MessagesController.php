@@ -4,13 +4,13 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * Pages Controller
+ * Messages Controller
  *
- * @property \App\Model\Table\PagesTable $Pages
+ * @property \App\Model\Table\MessagesTable $Messages
  *
- * @method \App\Model\Entity\Page[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @method \App\Model\Entity\Message[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class PagesController extends AppController
+class MessagesController extends AppController
 {
 
     /**
@@ -20,25 +20,25 @@ class PagesController extends AppController
      */
     public function index()
     {
-        $pages = $this->paginate($this->Pages);
+        $messages = $this->paginate($this->Messages);
 
-        $this->set(compact('pages'));
+        $this->set(compact('messages'));
     }
 
     /**
      * View method
      *
-     * @param string|null $id Page id.
+     * @param string|null $id Message id.
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $page = $this->Pages->get($id, [
+        $message = $this->Messages->get($id, [
             'contain' => []
         ]);
 
-        $this->set('page', $page);
+        $this->set('message', $message);
     }
 
     /**
@@ -48,58 +48,58 @@ class PagesController extends AppController
      */
     public function add()
     {
-        $page = $this->Pages->newEntity();
+        $message = $this->Messages->newEntity();
         if ($this->request->is('post')) {
-            $page = $this->Pages->patchEntity($page, $this->request->getData());
-            if ($this->Pages->save($page)) {
-                $this->Flash->success(__('The page has been saved.'));
+            $message = $this->Messages->patchEntity($message, $this->request->getData());
+            if ($this->Messages->save($message)) {
+                $this->Flash->success(__('The message has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The page could not be saved. Please, try again.'));
+            $this->Flash->error(__('The message could not be saved. Please, try again.'));
         }
-        $this->set(compact('page'));
+        $this->set(compact('message'));
     }
 
     /**
      * Edit method
      *
-     * @param string|null $id Page id.
+     * @param string|null $id Message id.
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $page = $this->Pages->get($id, [
+        $message = $this->Messages->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $page = $this->Pages->patchEntity($page, $this->request->getData());
-            if ($this->Pages->save($page)) {
-                $this->Flash->success(__('The page has been saved.'));
+            $message = $this->Messages->patchEntity($message, $this->request->getData());
+            if ($this->Messages->save($message)) {
+                $this->Flash->success(__('The message has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The page could not be saved. Please, try again.'));
+            $this->Flash->error(__('The message could not be saved. Please, try again.'));
         }
-        $this->set(compact('page'));
+        $this->set(compact('message'));
     }
 
     /**
      * Delete method
      *
-     * @param string|null $id Page id.
+     * @param string|null $id Message id.
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $page = $this->Pages->get($id);
-        if ($this->Pages->delete($page)) {
-            $this->Flash->success(__('The page has been deleted.'));
+        $message = $this->Messages->get($id);
+        if ($this->Messages->delete($message)) {
+            $this->Flash->success(__('The message has been deleted.'));
         } else {
-            $this->Flash->error(__('The page could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The message could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

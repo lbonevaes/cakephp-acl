@@ -4,13 +4,13 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * Pages Controller
+ * Plans Controller
  *
- * @property \App\Model\Table\PagesTable $Pages
+ * @property \App\Model\Table\PlansTable $Plans
  *
- * @method \App\Model\Entity\Page[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @method \App\Model\Entity\Plan[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class PagesController extends AppController
+class PlansController extends AppController
 {
 
     /**
@@ -20,25 +20,25 @@ class PagesController extends AppController
      */
     public function index()
     {
-        $pages = $this->paginate($this->Pages);
+        $plans = $this->paginate($this->Plans);
 
-        $this->set(compact('pages'));
+        $this->set(compact('plans'));
     }
 
     /**
      * View method
      *
-     * @param string|null $id Page id.
+     * @param string|null $id Plan id.
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $page = $this->Pages->get($id, [
-            'contain' => []
+        $plan = $this->Plans->get($id, [
+            'contain' => ['Users']
         ]);
 
-        $this->set('page', $page);
+        $this->set('plan', $plan);
     }
 
     /**
@@ -48,58 +48,58 @@ class PagesController extends AppController
      */
     public function add()
     {
-        $page = $this->Pages->newEntity();
+        $plan = $this->Plans->newEntity();
         if ($this->request->is('post')) {
-            $page = $this->Pages->patchEntity($page, $this->request->getData());
-            if ($this->Pages->save($page)) {
-                $this->Flash->success(__('The page has been saved.'));
+            $plan = $this->Plans->patchEntity($plan, $this->request->getData());
+            if ($this->Plans->save($plan)) {
+                $this->Flash->success(__('The plan has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The page could not be saved. Please, try again.'));
+            $this->Flash->error(__('The plan could not be saved. Please, try again.'));
         }
-        $this->set(compact('page'));
+        $this->set(compact('plan'));
     }
 
     /**
      * Edit method
      *
-     * @param string|null $id Page id.
+     * @param string|null $id Plan id.
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $page = $this->Pages->get($id, [
+        $plan = $this->Plans->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $page = $this->Pages->patchEntity($page, $this->request->getData());
-            if ($this->Pages->save($page)) {
-                $this->Flash->success(__('The page has been saved.'));
+            $plan = $this->Plans->patchEntity($plan, $this->request->getData());
+            if ($this->Plans->save($plan)) {
+                $this->Flash->success(__('The plan has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The page could not be saved. Please, try again.'));
+            $this->Flash->error(__('The plan could not be saved. Please, try again.'));
         }
-        $this->set(compact('page'));
+        $this->set(compact('plan'));
     }
 
     /**
      * Delete method
      *
-     * @param string|null $id Page id.
+     * @param string|null $id Plan id.
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $page = $this->Pages->get($id);
-        if ($this->Pages->delete($page)) {
-            $this->Flash->success(__('The page has been deleted.'));
+        $plan = $this->Plans->get($id);
+        if ($this->Plans->delete($plan)) {
+            $this->Flash->success(__('The plan has been deleted.'));
         } else {
-            $this->Flash->error(__('The page could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The plan could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

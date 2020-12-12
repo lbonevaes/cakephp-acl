@@ -1,5 +1,5 @@
 {
-    "name": "cakephp/app",
+    "name": "cakephp/cakephp-acl",
     "description": "CakePHP skeleton app",
     "homepage": "https://cakephp.org",
     "type": "project",

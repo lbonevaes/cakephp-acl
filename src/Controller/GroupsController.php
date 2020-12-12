@@ -4,13 +4,13 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * Pages Controller
+ * Groups Controller
  *
- * @property \App\Model\Table\PagesTable $Pages
+ * @property \App\Model\Table\GroupsTable $Groups
  *
- * @method \App\Model\Entity\Page[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @method \App\Model\Entity\Group[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class PagesController extends AppController
+class GroupsController extends AppController
 {
 
     /**
@@ -20,25 +20,25 @@ class PagesController extends AppController
      */
     public function index()
     {
-        $pages = $this->paginate($this->Pages);
+        $groups = $this->paginate($this->Groups);
 
-        $this->set(compact('pages'));
+        $this->set(compact('groups'));
     }
 
     /**
      * View method
      *
-     * @param string|null $id Page id.
+     * @param string|null $id Group id.
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $page = $this->Pages->get($id, [
-            'contain' => []
+        $group = $this->Groups->get($id, [
+            'contain' => ['Users']
         ]);
 
-        $this->set('page', $page);
+        $this->set('group', $group);
     }
 
     /**
@@ -48,58 +48,58 @@ class PagesController extends AppController
      */
     public function add()
     {
-        $page = $this->Pages->newEntity();
+        $group = $this->Groups->newEntity();
         if ($this->request->is('post')) {
-            $page = $this->Pages->patchEntity($page, $this->request->getData());
-            if ($this->Pages->save($page)) {
-                $this->Flash->success(__('The page has been saved.'));
+            $group = $this->Groups->patchEntity($group, $this->request->getData());
+            if ($this->Groups->save($group)) {
+                $this->Flash->success(__('The group has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The page could not be saved. Please, try again.'));
+            $this->Flash->error(__('The group could not be saved. Please, try again.'));
         }
-        $this->set(compact('page'));
+        $this->set(compact('group'));
     }
 
     /**
      * Edit method
      *
-     * @param string|null $id Page id.
+     * @param string|null $id Group id.
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $page = $this->Pages->get($id, [
+        $group = $this->Groups->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $page = $this->Pages->patchEntity($page, $this->request->getData());
-            if ($this->Pages->save($page)) {
-                $this->Flash->success(__('The page has been saved.'));
+            $group = $this->Groups->patchEntity($group, $this->request->getData());
+            if ($this->Groups->save($group)) {
+                $this->Flash->success(__('The group has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The page could not be saved. Please, try again.'));
+            $this->Flash->error(__('The group could not be saved. Please, try again.'));
         }
-        $this->set(compact('page'));
+        $this->set(compact('group'));
     }
 
     /**
      * Delete method
      *
-     * @param string|null $id Page id.
+     * @param string|null $id Group id.
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $page = $this->Pages->get($id);
-        if ($this->Pages->delete($page)) {
-            $this->Flash->success(__('The page has been deleted.'));
+        $group = $this->Groups->get($id);
+        if ($this->Groups->delete($group)) {
+            $this->Flash->success(__('The group has been deleted.'));
         } else {
-            $this->Flash->error(__('The page could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The group could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);
