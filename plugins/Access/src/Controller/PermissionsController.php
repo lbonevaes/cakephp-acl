@@ -33,14 +33,51 @@ class PermissionsController extends AppController{
     }
     
     public function grant($aro, $aco){
+        $this->loadModel('Acos');
+        $this->loadModel('Aros');
         
+        $aco = $this->Acos->get($aco);
+        $aro = $this->Aros->get($aro);
+        
+        $aro = [
+            'model'=>$aro->model,
+            'foreign_key'=>$aro->foreign_key
+        ];
+        
+        $this->Acl->allow($aro, $aco->id, '*');
+        return $this->redirect(['action'=>'index', $aro['model'], $aro['foreign_key']]);
     }
     
     public function deny($aro, $aco){
+        $this->loadModel('Acos');
+        $this->loadModel('Aros');
         
+        $aco = $this->Acos->get($aco);
+        $aro = $this->Aros->get($aro);
+        
+        $aro = [
+            'model'=>$aro->model,
+            'foreign_key'=>$aro->foreign_key
+        ];
+        
+        $this->Acl->deny($aro, $aco->id, '*');
+        return $this->redirect(['action'=>'index', $aro['model'], $aro['foreign_key']]);
     }
     
     public function delete($id){
+        $this->loadModel('Aros');
+        $this->loadModel('ArosAcos');
         
+        $permission = $this->ArosAcos->find()
+                ->where([
+                    'id'=>$id
+                ])
+                ->first();
+        
+        $this->ArosAcos->delete($permission);
+        
+        $aro = $this->Aros->get($permission->aro_id);
+        
+        return $this->redirect(['action'=>'index', $aro->model, $aro->foreign_key]);
     }
 }

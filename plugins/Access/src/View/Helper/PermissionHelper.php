@@ -30,7 +30,7 @@ class PermissionHelper extends Helper {
         }
         
         $url = Router::url('/access/permissions/'.$action.'/'.$aro->id.'/'.$aco->id, true);
-        $url_inherit = Router::url('/access/permissions/delet/'.$permission['id'], true);
+        $url_inherit = Router::url('/access/permissions/delete/'.$permission['id'], true);
         
         $html = '<a href="'.$url.'" class="btn btn-xs btn-'.$class.'">'.$label.'</a>';
         $html .= '<a href="'.$url_inherit.'" class="btn btn-xs btn-default">Herdar</a>';
