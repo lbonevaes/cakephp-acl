@@ -11,7 +11,8 @@
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "~1.0",
         "josegonzalez/dotenv": "2.*",
-        "cakephp-brasil/twitter-bootstrap": "^1.0"
+        "cakephp-brasil/twitter-bootstrap": "^1.0",
+        "cakephp/acl": "^0.2.1"
     },
     "require-dev": {
         "psy/psysh": "@stable",

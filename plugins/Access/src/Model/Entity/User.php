@@ -59,8 +59,8 @@ class User extends Entity
         if(!$this->id){
             return null;
         }
-        if(isset($this->groups_id)){
-            $groupId = $this->groups_id;
+        if(isset($this->group_id)){
+            $groupId = $this->group_id;
         } else {
             $users = \Cake\ORM\TableRegistry::get('Access.Users');
             $user = $users->find('all', ['fields'=>['group_id']])

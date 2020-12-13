@@ -208,6 +208,7 @@ Type::build('timestamp')
  *
  */
 
+Plugin::load('Acl', ['bootstrap'=>true]);
 Plugin::load('Migrations');
 Plugin::load('TwitterBootstrap');
 

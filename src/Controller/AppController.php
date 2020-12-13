@@ -18,6 +18,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Controller\Component\AuthComponent;
 
 /**
  * Application Controller
@@ -28,6 +29,12 @@ use Cake\Event\Event;
  * @link https://book.cakephp.org/3.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+    
+    public $components = [
+        'Acl' => [
+            'className' => 'Acl.Acl'
+        ]
+    ];
 
     /**
      * Initialization hook method.
@@ -44,7 +51,18 @@ class AppController extends Controller {
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->loadComponent('Auth', [
-           'loginAction'=>[
+            'authorize' => [
+                'Acl.Actions'=>['actionPath'=>'controllers/']
+            ],
+            'AuthComponent'=>[
+                'userModel'=>'AccessUsers'
+            ],
+            'unauthorizedRedirect'=>[
+               'plugin'=>false,
+               'controller'=>'articles',
+               'action'=>'index'
+            ],
+            'loginAction'=>[
                'plugin'=>'access',
                'controller'=>'users',
                'action'=>'login'
