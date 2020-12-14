@@ -19,6 +19,7 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\Controller\Component\AuthComponent;
+use Cake\Network\Exception\ForbiddenException;
 
 /**
  * Application Controller
@@ -29,7 +30,7 @@ use Cake\Controller\Component\AuthComponent;
  * @link https://book.cakephp.org/3.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-    
+
     public $components = [
         'Acl' => [
             'className' => 'Acl.Acl'
@@ -54,19 +55,19 @@ class AppController extends Controller {
             'authorize' => [
                 'Acl.Actions'=>['actionPath'=>'controllers/']
             ],
-            'AuthComponent'=>[
-                'userModel'=>'AccessUsers'
+            'AuthComponent' => [
+                'userModel' => 'AccessUsers'
             ],
-            'unauthorizedRedirect'=>[
-               'plugin'=>false,
-               'controller'=>'articles',
-               'action'=>'index'
+            'unauthorizedRedirect' => [
+                'plugin' => false,
+                'controller' => 'articles',
+                'action' => 'index'
             ],
-            'loginAction'=>[
-               'plugin'=>'access',
-               'controller'=>'users',
-               'action'=>'login'
-           ] 
+            'loginAction' => [
+                'plugin' => 'access',
+                'controller' => 'users',
+                'action' => 'login'
+            ]
         ]);
 
         /*
@@ -80,6 +81,11 @@ class AppController extends Controller {
     public function beforeFilter(Event $event) {
         $this->viewBuilder()->layout('TwitterBootstrap.adminlte');
         //$this->Auth->allow();
+        if (method_exists($this, 'isAuthorized')) {
+            if (!$this->isAuthorized($this->Auth->user())) {
+                throw new ForbiddenException();
+            }
+        }
     }
 
     /**

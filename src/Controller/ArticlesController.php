@@ -12,6 +12,11 @@ use App\Controller\AppController;
  */
 class ArticlesController extends AppController
 {
+    protected function isAuthorized($user) {
+        dump($user); exit;
+        return true;
+    }
+    
 
     /**
      * Index method

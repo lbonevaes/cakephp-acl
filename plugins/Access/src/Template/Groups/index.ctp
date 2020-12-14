@@ -29,6 +29,7 @@
                 <td class="actions" style="white-space:nowrap">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $group->id], ['class'=>'btn btn-default btn-xs']) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $group->id], ['class'=>'btn btn-primary btn-xs']) ?>
+                    <?= $this->Html->link(__('Permissions'), ['controller' => 'permissions', 'action' => 'index', 'groupss', $group->id], ['class'=>'btn btn-success btn-xs']) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $group->id], ['confirm' => __('Are you sure you want to delete # {0}?', $group->id), 'class'=>'btn btn-danger btn-xs']) ?>
                 </td>
             </tr>

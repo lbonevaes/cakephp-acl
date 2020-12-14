@@ -16,7 +16,6 @@
             <tr>
                 <th><?= $this->Paginator->sort('id') ?></th>
                 <th><?= $this->Paginator->sort('username') ?></th>
-                <th><?= $this->Paginator->sort('password') ?></th>
                 <th><?= $this->Paginator->sort('group_id') ?></th>
                 <th><?= $this->Paginator->sort('plan_id') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
@@ -29,7 +28,6 @@
             <tr>
                 <td><?= $this->Number->format($user->id) ?></td>
                 <td><?= h($user->username) ?></td>
-                <td><?= h($user->password) ?></td>
                 <td><?= $user->has('group') ? $this->Html->link($user->group->name, ['controller' => 'Groups', 'action' => 'view', $user->group->id]) : '' ?></td>
                 <td><?= $user->has('plan') ? $this->Html->link($user->plan->title, ['controller' => 'Plans', 'action' => 'view', $user->plan->id]) : '' ?></td>
                 <td><?= h($user->created) ?></td>
@@ -37,6 +35,7 @@
                 <td class="actions" style="white-space:nowrap">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $user->id], ['class'=>'btn btn-default btn-xs']) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id], ['class'=>'btn btn-primary btn-xs']) ?>
+                    <?= $this->Html->link(__('Permissions'), ['controller' => 'permissions', 'action' => 'index', 'users', $user->id], ['class'=>'btn btn-success btn-xs']) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id), 'class'=>'btn btn-danger btn-xs']) ?>
                 </td>
             </tr>

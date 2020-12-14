@@ -40,15 +40,13 @@
     <li><a href="/cakephp-acl/messages"><i class="fa fa-link"></i> <span>Mensagens</span></a></li>
     <li><a href="/cakephp-acl/pages"><i class="fa fa-link"></i> <span>Páginas</span></a></li>
     <li><a href="/cakephp-acl/plans"><i class="fa fa-link"></i> <span>Planos</span></a></li>
-    <li><a href="/cakephp-acl/groups"><i class="fa fa-link"></i> <span>Grupos</span></a></li>
-    <li><a href="/cakephp-acl/users"><i class="fa fa-link"></i> <span>Usuários</span></a></li>
-    <!--<li class="treeview">
-      <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
+    <li class="treeview">
+      <a href="#"><i class="fa fa-link"></i> <span>ACL</span> <i class="fa fa-angle-left pull-right"></i></a>
       <ul class="treeview-menu">
-        <li><a href="#">Link in level 2</a></li>
-        <li><a href="#">Link in level 2</a></li>
+        <li><a href="/cakephp-acl/access/groups">Grupos</a></li>
+        <li><a href="/cakephp-acl/access/users">Usuários</a></li>
       </ul>
-    </li>-->
+    </li>
   </ul>
   <!-- /.sidebar-menu -->
 </section>
